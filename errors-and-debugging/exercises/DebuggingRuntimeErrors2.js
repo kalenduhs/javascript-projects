@@ -1,6 +1,4 @@
-<<<<<<< HEAD
-let launchReady = false;
-let fuelLevel = 27000;
+
 
 if (fuelLevel >= 20000) {
    console.log('Fuel level cleared.');
@@ -20,7 +18,6 @@ if (launchReady) {
 } else {
    console.log("Launch scrubbed.");
 }
-=======
 let launchReady = false;
 let fuelLevel = 27000;
 
@@ -42,4 +39,3 @@ if (launchReady) {
 } else {
    console.log("Launch scrubbed.");
 }
->>>>>>> upstream/main

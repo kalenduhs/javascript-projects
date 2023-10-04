@@ -3,22 +3,21 @@ let radius = 2000;
 
 function orbitCircumference (radius) {
   let c = 2 * Math.PI * radius;
-  return c;
+  return Math.round(c);
 }
 
+//console.log(orbitCircumference(2000))
 
 // Code your missionDuration function here:
 
 function missionDuration (numOrbits, radius = 2000, orbitalSpeed = 28000) {
-  let time = (Math.round(((orbitCircumference(radius) / orbitalSpeed)*100)/100)) * numOrbits;
-  //return console.log statement
+  let time = orbitCircumference(radius) / orbitalSpeed * numOrbits;
+  return Math.round(time*100) / 100;
 }
 
-// Copy/paste your selectRandomEntry function here:
+//logging this with 7 trips. 
+//console.log(`The mission will travel ${orbitCircumference(2000) * 7} km around the planet, and it will take ${missionDuration(7)} hours to complete.`)
 
-
-
-// Code your oxygenExpended function here:
 
 
 // Candidate data & crew array.
@@ -67,13 +66,33 @@ let candidateA = {
  
  let crew = [candidateA,candidateC,candidateE];
  
- function selectRandomEntry (idNumbers) {
-  return idNumbers [Math.floor(Math.random()*6)]
+
+ // Copy/paste your selectRandomEntry function here:
+
+
+
+// Code your oxygenExpended function here:
+ function selectRandomEntry (array) {
+  return array [Math.floor(Math.random()*array.length)]
 }
 
-function oxygenExpended(candObj) {
-  let oxygenUsed = Math.round(candObj.o2Used(missionDuration(3)*1000)/1000);
-
-
+function oxygenExpended(candObj, orbitalRadius = 2000, orbitalSpeed = 28000) {
+  let oxygenUsed = candObj.o2Used(missionDuration(3, orbitalRadius, orbitalSpeed));
+  return `${candObj.name} will perform the spacewalk, which will last ${missionDuration(3, orbitalRadius, orbitalSpeed)} hours and require ${Math.round(oxygenUsed * 1000)/ 1000} kg of oxygen.`
 }
 
+//console.log(oxygenExpended(selectRandomEntry(crew), 3000, 50000));
+
+function lowestOxygen (crew) {
+  let selection;
+  let oxygenUsed = crew[0].o2Used(1);
+  for (let i = 0; i < crew.length; i++) {
+    if (crew[i].o2Used(1) < oxygenUsed) {
+      selection = crew[i]
+      oxygenUsed = crew[i].o2Used(1);
+    }
+  }
+  return selection;
+}
+
+console.log(oxygenExpended(lowestOxygen(crew), 3000, 50000));

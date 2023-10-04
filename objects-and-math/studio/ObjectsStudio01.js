@@ -3,7 +3,7 @@ let idNumbers = [291, 414, 503, 599, 796, 890];
 // Code your selectRandomEntry function here:
 
 function selectRandomEntry (idNumbers) {
-  return idNumbers [Math.floor(Math.random()*6)]
+  return idNumbers [Math.floor(Math.random()*idNumbers.length)]
 }
 
 let arrID = [];

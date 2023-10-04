@@ -1,9 +1,3 @@
-// Code your crewMass function here:
-
-
-// Code your fuelRequired function here:
-
-
 // The pre-selected crew is in the array at the end of this file.
 // Feel free to add, remove, or switch crew members as you see fit.
 
@@ -52,3 +46,41 @@ let candidateA = {
  
  let crew = [candidateB,candidateD,candidateF];
  
+
+ // Code your crewMass function here:
+
+ function crewMass (array) {
+  let mass = 0;
+  for (let i = 0; i < array.length; i++) {
+    mass += array[i].mass;
+  }
+  return Math.round(mass * 10) / 10;
+ }
+
+
+// Code your fuelRequired function here:
+
+// Function for part 2
+/* function fuelRequired (array) {
+  massOfRocketandSupplies = 75000;
+  totalMass = massOfRocketandSupplies + crewMass(array);
+  fuelNeeded = totalMass * 9.5;
+  return fuelNeeded;
+} */
+
+function fuelRequired (array) {
+  massOfRocketandSupplies = 75000;
+  extraSafeFuel = 0;
+  for (let i = 0; i < array.length; i++) {
+    if (array[i].species === 'dog' || array[i].species === 'cat') {
+      extraSafeFuel += 200;
+    } else {
+      extraSafeFuel += 100;
+    }
+  }
+  totalMass = massOfRocketandSupplies + crewMass(array);
+  fuelNeeded = (totalMass * 9.5) + extraSafeFuel;
+  return Math.ceil(Math.trunc(fuelNeeded));
+}
+
+console.log(fuelRequired(crew));

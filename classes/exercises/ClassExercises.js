@@ -10,6 +10,10 @@ class Book {
         this.timesCheckedOut = timesCheckedOut;
         this.discarded = discarded;
     }
+
+    checkout(uses=1) {
+        this.timesCheckedOut += uses;
+    }
 }
 
 // Define your Manual and Novel classes here:
@@ -18,11 +22,23 @@ class Manual extends Book {
     constructor(title, author, copyrightDate, isbn, numberOfPages, timesCheckedOut, discarded) {
         super(title, author, copyrightDate, isbn, numberOfPages, timesCheckedOut, discarded);
     }
+
+    dispose(currentYear) {
+        if (currentYear - this.copyrightDate > 5) {
+            this.discarded = "Yes";
+        }
+    }
 }
 
 class Novel extends Book {
     constructor(title, author, copyrightDate, isbn, numberOfPages, timesCheckedOut, discarded) {
         super(title, author, copyrightDate, isbn, numberOfPages, timesCheckedOut, discarded)
+    }
+
+    dispose() {
+        if (this.timesCheckedOut > 100) {
+            this.discarded = "Yes";
+        }
     }
 }
 
@@ -35,3 +51,10 @@ let prideAndPrejudice = new Novel('Pride and Prejudice', 'Jane Austen', 1813, '1
 
 
 // Code exercises 4 & 5 here:
+
+shuttleBuilding.dispose(2023);
+console.log(shuttleBuilding);
+
+prideAndPrejudice.checkout(150);
+prideAndPrejudice.dispose();
+console.log(prideAndPrejudice);

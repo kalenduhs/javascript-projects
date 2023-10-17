@@ -11,12 +11,11 @@ class CrewCandidate {
     };
 
     average() {
-        let scores = this.scores;
         let average = 0;
-        for (let i = 0; i < scores.length; i++) {
-            average += scores[i];
+        for (let i = 0; i < this.scores.length; i++) {
+            average += this.scores[i];
         }
-        return Math.round((average / scores.length)*10) / 10;
+        return Math.round((average / this.scores.length)*10) / 10;
     };
 
     status() {

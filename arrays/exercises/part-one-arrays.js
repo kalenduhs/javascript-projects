@@ -1,4 +1,4 @@
-//Create an array that can hold 4 items name practiceFile.
+//Create an array called practiceFile with the following entry: 273.15
 
 let practiceFile = [273.15];
 console.log(practiceFile);
@@ -16,3 +16,4 @@ practiceFile.push(false, -4.6, "87");
 console.log(practiceFile);
 
 console.log(/*The excercise instructions from the book are different from this file. I followed the instructions from the book.*/ );
+//Use a single .push() to add the following items: false, -4.6, and "87".  Print the array to confirm the changes.

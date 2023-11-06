@@ -41,8 +41,8 @@ function init () {
     });
 
     up.addEventListener('click', function (){
-        let position = parseInt(rocket.style.bottom) + 10 + 'px';
-        rocket.style.bottom = position;
+        let position = parseInt(rocket.style.bottom);
+        position = position + 10;
     });
 
     down.addEventListener('click', function (){

@@ -1,11 +1,38 @@
 <!doctype html>
 
+
+<!--I would love to add some CSS but I'm limited on time.-->
 <head>
 	<meta charset="utf-8">
 	<script>
+		let actions = {
+			google: 'https://www.google.com/search',
+			duckDuckGo: 'https://duckduckgo.com/',
+			bing: 'https://www.bing.com/search',
+			ask: 'https://www.ask.com/web'
+		}
 		// TODO: create a handler
+		function setSearchEngine() {
+			const selection = document.querySelector('input[name=engine]:checked');
+			const form = document.getElementById("searchForm");
+			const input = document.getElementById("q");
+
+			if (input.value === '') {
+				alert('Please enter something to search for.');
+				event.preventDefault();
+			} else if (!selection) {
+				alert('Please select a search engine');
+				event.preventDefault();
+			}
+
+			let actionURL = actions[selection.value];
+			form.setAttribute("action", actionURL);
+		}	
+
     window.addEventListener("load", function(){
         // TODO: register the handler
+		const form = document.getElementById("searchForm");
+		form.addEventListener("submit", setSearchEngine);
     });
 	</script>
 </head>
@@ -14,6 +41,14 @@
 
 	<form id="searchForm">
     <!-- TODO: add form elements -->
+	<input type="text" id="q" name="q"/>
+	<label>
+		<input type="radio" name="engine" value="google" /> Google
+		<input type="radio" name="engine" value="duckDuckGo"/> DuckDuckGo
+		<input type="radio" name="engine" value="bing"/> Bing
+		<input type="radio" name="engine" value="ask"/> Ask
+		<button id="submit" value="Go!">Go!</button>
+	</label>
 	</form>
 
 </body>
